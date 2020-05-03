@@ -266,7 +266,7 @@ static PyMethodDef watchdog_methods[] = {
 /* Watchodg type defintion */
 static PyTypeObject WatchdogType = {
         PyVarObject_HEAD_INIT(NULL, 0) /*ob_size*/
-        "watchdogdev.watchdog",        /*tp_name*/
+        "watchdogapi.watchdog",        /*tp_name*/
         sizeof(watchdogobject),        /*tp_basicsize*/
         0,                             /*tp_itemsize*/
         /* methods */
@@ -481,7 +481,7 @@ GETTER_PROTO(get_identity) {
 #if PY_MAJOR_VERSION >= 3
     static struct PyModuleDef moduledef = {
         PyModuleDef_HEAD_INIT,
-        "watchdogdev",       /* m_name */
+        "watchdogapi",       /* m_name */
         module_doc,          /* m_doc */
         -1,                  /* m_size */
         module_functions,    /* m_methods */
@@ -496,7 +496,7 @@ static PyObject* moduleinit(void) {
     #if PY_MAJOR_VERSION >= 3
         PyObject *m = PyModule_Create(&moduledef);
     #else
-        PyObject *m = Py_InitModule3("watchdogdev", module_functions, module_doc);
+        PyObject *m = Py_InitModule3("watchdogapi", module_functions, module_doc);
     #endif
 
     if (m == NULL) {
@@ -545,12 +545,12 @@ static PyObject* moduleinit(void) {
 };
 
 #if PY_MAJOR_VERSION < 3
-    PyMODINIT_FUNC initwatchdogdev(void)
+    PyMODINIT_FUNC initwatchdogapi(void)
     {
         moduleinit();
     }
 #else
-    PyMODINIT_FUNC PyInit_watchdogdev(void)
+    PyMODINIT_FUNC PyInit_watchdogapi(void)
     {
         return moduleinit();
     }
